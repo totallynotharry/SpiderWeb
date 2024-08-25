@@ -1,2 +1,2 @@
 # SpiderWeb
-a cool website amker with no coding experience needed, all you need is an internet connection and notepad.
+a cool website maker with no coding experience needed, all you need is an internet connection and notepad.
