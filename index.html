@@ -6,14 +6,21 @@
     <title>SpiderWeb</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
-        #output { margin-top: 20px; border: 1px solid #ddd; padding: 10px; }
+        #output { display: none; }
+        #inputContainer { margin-bottom: 20px; }
+        #fileInput, #textInput { margin-bottom: 10px; }
         .footer-button { margin-top: 40px; }
     </style>
 </head>
 <body>
     <h1>Are you ready to view your SpiderWeb?</h1>
-    <p>Upload your <code>.spiderweb</code> file to generate a website:</p>
-    <input type="file" id="fileInput" accept=".spiderweb">
+    
+    <div id="inputContainer">
+        <p>Upload your <code>.spiderweb</code> file or type your code below:</p>
+        <input type="file" id="fileInput" accept=".spiderweb"><br>
+        <textarea id="textInput" rows="10" cols="50" placeholder="Type your .spiderweb code here..."></textarea><br>
+        <button id="okButton">OK!</button>
+    </div>
 
     <div id="output"></div>
 
