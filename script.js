@@ -4,7 +4,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         const reader = new FileReader();
         reader.onload = function(e) {
             const content = e.target.result;
-            parseSpiderWeb(content);
+            showFullScreen(content);
         };
         reader.readAsText(file);
     } else {
@@ -12,7 +12,23 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     }
 });
 
-function parseSpiderWeb(content) {
+document.getElementById('okButton').addEventListener('click', function() {
+    const textInput = document.getElementById('textInput').value;
+    if (textInput.trim()) {
+        showFullScreen(textInput);
+    } else {
+        alert('Please enter or upload valid .spiderweb code.');
+    }
+});
+
+function showFullScreen(content) {
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = '';  // Clear previous content
+    parseSpiderWeb(content, outputDiv);
+    openFullScreen(outputDiv);
+}
+
+function parseSpiderWeb(content, outputDiv) {
     const lines = content.split('\n');
     let html = '';
 
@@ -43,7 +59,19 @@ function parseSpiderWeb(content) {
         }
     });
 
-    document.getElementById('output').innerHTML = html;
+    outputDiv.innerHTML = html;
+}
+
+function openFullScreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) { // Firefox
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { // IE/Edge
+        element.msRequestFullscreen();
+    }
 }
 
 // Function to escape HTML to prevent XSS attacks
